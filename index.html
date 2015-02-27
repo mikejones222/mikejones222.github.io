@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
       <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
       <style>
-        #map{ width: 900px; height: 900px; }
+        #map{ width: 90 %; height: 90 %; }
       </style>
     </head>
     <body>
@@ -24,6 +24,14 @@
       }).addTo(map);
       </script>
 
+      L.geoJson(data, {
+          style: function (feature) {
+              return {color: feature.properties.color};
+          },
+          onEachFeature: function (feature, layer) {
+              layer.bindPopup(feature.properties.description);
+          }
+      }).addTo(map);
 
   <!--Google Analytics-->
   <script>
