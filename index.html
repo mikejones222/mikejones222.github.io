@@ -24,14 +24,7 @@
       }).addTo(map);
       </script>
 
-      L.geoJson(data, {
-          style: function (feature) {
-              return {color: feature.properties.color};
-          },
-          onEachFeature: function (feature, layer) {
-              layer.bindPopup(feature.properties.description);
-          }
-      }).addTo(map);
+      
 
   <!--Google Analytics-->
   <script>
