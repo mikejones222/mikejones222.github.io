@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/label.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> <!-- this is the javascript file that does the magic-->
 	<script src="js/Autolinker.min.js"></script>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 </head>
 <body>
 	<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
@@ -30,8 +31,8 @@
 
 	var raster_group = new L.LayerGroup([]);
 	
-		var basemap_0 = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', { 
-			attribution: additional_attrib + 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});	
+		var basemap_0 = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});	
 		basemap_0.addTo(map);	
 	var layerOrder=new Array();
 							function pop_deso(feature, layer) {
@@ -53,7 +54,7 @@
 							weight: 1,
 							opacity: feature.properties.transp_qgis2leaf,
 							fillOpacity: feature.properties.transp_qgis2leaf
-							})
+							}).bindLabel(feature.properties.Name)
 						}
 					});
 				
@@ -81,7 +82,7 @@
 		legend.addTo(map);
 
 	var baseMaps = {
-		'Stamen Terrain': basemap_0
+		'Thunderforest Outdoors': basemap_0
 	};
 	L.control.layers(baseMaps,{"deso": exp_desoJSON},{collapsed:false}).addTo(map);
 		map.fitBounds(feature_group.getBounds());
