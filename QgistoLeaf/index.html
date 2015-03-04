@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>QGIS2leaf webmap</title>
+	
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css" /> <!-- we will us e this as the styling script for our webmap-->
+	<link rel="stylesheet" href="css/MarkerCluster.css" />
+	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+	<link rel="stylesheet" type="text/css" href="css/own_style.css">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> <!-- this is the javascript file that does the magic-->
+	<script src="js/Autolinker.min.js"></script>
+</head>
+<body>
+	<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script> <!-- this is the javascript file that does the magic-->
+	<script src="js/leaflet.markercluster.js"></script>
+	<input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(this.value)">
+				<script src='data/exp_RESTRICTIONS.js' ></script>
+				
+				<script src='data/exp_SMONSNEWSCHEMA.js' ></script>
+				
+	<script>
+		var map = L.map('map', { zoomControl:true });
+		var additional_attrib = 'created with <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+	var feature_group = new L.featureGroup([]);
+
+	var raster_group = new L.LayerGroup([]);
+	
+	var basemap= L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png');
+	map.attributionControl.addAttribution(additional_attrib + 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>');	
+	basemap.addTo(map);	
+	var layerOrder=new Array();
+				function pop_SMONSNEWSCHEMA(feature, layer) {
+										var popupContent = '<table><tr><th scope="row">OBJECTID</th><td>' + Autolinker.link(String(feature.properties.OBJECTID)) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties.Type)) + '</td></tr><tr><th scope="row">Mounment_S</th><td>' + Autolinker.link(String(feature.properties.Mounment_S)) + '</td></tr><tr><th scope="row">TownshipRa</th><td>' + Autolinker.link(String(feature.properties.TownshipRa)) + '</td></tr><tr><th scope="row">Index_</th><td>' + Autolinker.link(String(feature.properties.Index_)) + '</td></tr><tr><th scope="row">Date_Shot</th><td>' + Autolinker.link(String(feature.properties.Date_Shot)) + '</td></tr><tr><th scope="row">Date_PLS_</th><td>' + Autolinker.link(String(feature.properties.Date_PLS_)) + '</td></tr><tr><th scope="row">Comments</th><td>' + Autolinker.link(String(feature.properties.Comments)) + '</td></tr><tr><th scope="row">PointID</th><td>' + Autolinker.link(String(feature.properties.PointID)) + '</td></tr><tr><th scope="row">Easting</th><td>' + Autolinker.link(String(feature.properties.Easting)) + '</td></tr><tr><th scope="row">Northing</th><td>' + Autolinker.link(String(feature.properties.Northing)) + '</td></tr><tr><th scope="row">Elevation</th><td>' + Autolinker.link(String(feature.properties.Elevation)) + '</td></tr><tr><th scope="row">GlobalLati</th><td>' + Autolinker.link(String(feature.properties.GlobalLati)) + '</td></tr><tr><th scope="row">GlobalLong</th><td>' + Autolinker.link(String(feature.properties.GlobalLong)) + '</td></tr><tr><th scope="row">GlobalElli</th><td>' + Autolinker.link(String(feature.properties.GlobalElli)) + '</td></tr><tr><th scope="row">LocalLatit</th><td>' + Autolinker.link(String(feature.properties.LocalLatit)) + '</td></tr><tr><th scope="row">LocalLongi</th><td>' + Autolinker.link(String(feature.properties.LocalLongi)) + '</td></tr><tr><th scope="row">LocalEllip</th><td>' + Autolinker.link(String(feature.properties.LocalEllip)) + '</td></tr><tr><th scope="row">shpname</th><td>' + Autolinker.link(String(feature.properties.shpname)) + '</td></tr><tr><th scope="row">GIS_ID_PAM</th><td>' + Autolinker.link(String(feature.properties.GIS_ID_PAM)) + '</td></tr><tr><th scope="row">LATDMS</th><td>' + Autolinker.link(String(feature.properties.LATDMS)) + '</td></tr><tr><th scope="row">LONGDMS</th><td>' + Autolinker.link(String(feature.properties.LONGDMS)) + '</td></tr><tr><th scope="row">DESC_</th><td>' + Autolinker.link(String(feature.properties.DESC_)) + '</td></tr><tr><th scope="row">StatePlane</th><td>' + Autolinker.link(String(feature.properties.StatePlane)) + '</td></tr><tr><th scope="row">State</th><td>' + Autolinker.link(String(feature.properties.State)) + '</td></tr><tr><th scope="row">Unique_ID</th><td>' + Autolinker.link(String(feature.properties.Unique_ID)) + '</td></tr><tr><th scope="row">DateImport</th><td>' + Autolinker.link(String(feature.properties.DateImport)) + '</td></tr></table>';
+					layer.bindPopup(popupContent);
+
+
+				}
+						
+				var exp_SMONSNEWSCHEMAJSON = new L.geoJson(exp_SMONSNEWSCHEMA,{
+					onEachFeature: pop_SMONSNEWSCHEMA,
+					pointToLayer: function (feature, latlng) {  
+						return L.circleMarker(latlng, {
+							radius: feature.properties.radius_qgis2leaf,
+							fillColor: feature.properties.color_qgis2leaf,
+							color: '#000',
+							weight: 1,
+							opacity: feature.properties.transp_qgis2leaf,
+							fillOpacity: feature.properties.transp_qgis2leaf
+							})
+						}
+					});
+				
+				feature_group.addLayer(exp_SMONSNEWSCHEMAJSON);
+				layerOrder[layerOrder.length] = exp_SMONSNEWSCHEMAJSON;
+				for (index = 0; index < layerOrder.length; index++) {
+					feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+				}
+				
+						//add comment sign to hide this layer on the map in the initial view.
+						exp_SMONSNEWSCHEMAJSON.addTo(map);
+				function pop_RESTRICTIONS(feature, layer) {
+										var popupContent = '<table><tr><th scope="row">OBJECTID</th><td>' + Autolinker.link(String(feature.properties.OBJECTID)) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties.Type)) + '</td></tr><tr><th scope="row">Comments</th><td>' + Autolinker.link(String(feature.properties.Comments)) + '</td></tr><tr><th scope="row">Creator</th><td>' + Autolinker.link(String(feature.properties.Creator)) + '</td></tr><tr><th scope="row">Creator_Date</th><td>' + Autolinker.link(String(feature.properties.Creator_Date)) + '</td></tr><tr><th scope="row">Editor</th><td>' + Autolinker.link(String(feature.properties.Editor)) + '</td></tr><tr><th scope="row">Editor_Date</th><td>' + Autolinker.link(String(feature.properties.Editor_Date)) + '</td></tr></table>';
+					layer.bindPopup(popupContent);
+
+
+				}
+						
+				var exp_RESTRICTIONSJSON = new L.geoJson(exp_RESTRICTIONS,{
+					onEachFeature: pop_RESTRICTIONS,
+					style: function (feature) {
+						return {color: feature.properties.border_color_qgis2leaf,
+								fillColor: feature.properties.color_qgis2leaf,
+								weight: feature.properties.radius_qgis2leaf,
+								opacity: feature.properties.transp_qgis2leaf,
+								fillOpacity: feature.properties.transp_qgis2leaf};
+						}
+					});
+				feature_group.addLayer(exp_RESTRICTIONSJSON);
+				layerOrder[layerOrder.length] = exp_RESTRICTIONSJSON;
+				for (index = 0; index < layerOrder.length; index++) {
+					map.removeLayer(layerOrder[index]);map.addLayer(layerOrder[index]);
+				}
+				
+						//add comment sign to hide this layer on the map in the initial view.
+						exp_RESTRICTIONSJSON.addTo(map);
+		var title = new L.Control();
+		title.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+			this.update();
+			return this._div;
+	    };
+	    title.update = function () {
+			this._div.innerHTML = '<h2>This is the title</h2>This is the subtitle'
+		};
+		title.addTo(map);
+		var legend = L.control({position: 'bottomright'});
+		
+		legend.onAdd = function (map) {
+		var div = L.DomUtil.create('div', 'info legend');
+		div.innerHTML = "<h3>Legend</h3><table></table>";
+    		return div;
+		};
+		legend.addTo(map);
+
+	L.control.layers({'OpenWeatherMap Precipitation': basemap},{"RESTRICTIONS": exp_RESTRICTIONSJSON,"SMONS_NEWSCHEMA": exp_SMONSNEWSCHEMAJSON},{collapsed:false}).addTo(map);
+		function updateOpacity(value) {
+	}
+		map.fitBounds(feature_group.getBounds());
+	</script>
+</body>
+</html>
+	
