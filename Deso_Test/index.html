@@ -31,9 +31,19 @@
 
 	var raster_group = new L.LayerGroup([]);
 	
-		var basemap_0 = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', { 
+		var basemap_0 = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', { 
 			attribution: additional_attrib + '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});	
-		basemap_0.addTo(map);	
+		basemap_0.addTo(map);
+		var basemap_1 = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});
+		var basemap_2 = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});
+		var basemap_3 = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>'});
+		var basemap_4 = L.tileLayer('http://{s}.tile.openweathermap.org/map/rain/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>'});
+		var basemap_5 = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>'});	
 	var layerOrder=new Array();
 							function pop_deso(feature, layer) {
 										
@@ -82,8 +92,12 @@
 		legend.addTo(map);
 
 	var baseMaps = {
-		'Thunderforest Outdoors': basemap_0
-	};
+		'Thunderforest Landscape': basemap_0,
+		'Thunderforest Outdoors': basemap_1,
+		'Stamen Terrain': basemap_2,
+		'OpenWeatherMap Precipitation': basemap_3,
+		'OpenWeatherMap Rain': basemap_4,
+		'OpenWeatherMap Wind': basemap_5};
 	L.control.layers(baseMaps,{"deso": exp_desoJSON},{collapsed:false}).addTo(map);
 		map.fitBounds(feature_group.getBounds());
 	</script>
