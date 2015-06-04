@@ -14,7 +14,7 @@
 
       <script>
       // Initialize the map.
-      var map = L.map('map').setView([39.337210, -109.901415], 10);
+      var map = L.map('map').setView([39.337210, -109.901415], 9);
 
       L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
   			maxZoom: 18,
@@ -48,6 +48,15 @@
 
 
   		var popup = L.popup();
+      var baseUrl = "http://services.arcgisonline.com/ArcGIS/rest/services/Demographics/
+USA_Tapestry/MapServer";
+
+      tiledLayer = L.esri.tiledMapLayer(url, {
+                opacity: 0.25,
+                zIndex:2,
+                detectRetina: true
+              }).addTo(map);
+
 
   		function onMapClick(e) {
   			popup
