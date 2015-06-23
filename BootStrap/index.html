@@ -29,8 +29,8 @@
     });
 
     // Load a tile layer.
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 22,
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16,
       minZoom: 1
     }).addTo(map);
     var districtLayer = L.tileLayer.wms("http://gis.drcog.org/geoserver/gwc/service/wms?",{
@@ -40,11 +40,6 @@
       transparent: true
       }).addTo(map);
 
-      var Esri_DeLorme = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}', {
-  	attribution: 'Tiles &copy; Esri &mdash; Copyright: &copy;2012 DeLorme',
-  	minZoom: 1,
-  	maxZoom: 11
-  });
     var districyLayer2 = L.tileLayer.wms("http://gis.drcog.org/geoserver/gwc/service/wms?",{
       layers: 'DRCOGPUB:traffic_counts',
       tiled: true,
