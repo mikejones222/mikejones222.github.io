@@ -46,7 +46,9 @@
       format: 'image/png',
       transparent: true
         }).addTo(map);
-
+      L.marker([51.5, -0.09]).addTo(map)
+        	.bindPopup('A pretty CSS3 popup. &lt;br&gt; Easily customizable.')
+        	.openPopup();
     function onLocationFound(e) {
 			var radius = e.accuracy / 3;
 
