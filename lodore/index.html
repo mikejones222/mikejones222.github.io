@@ -122,7 +122,7 @@
 		var exp_TripPOIJSON = new L.geoJson(exp_TripPOI,{
 			onEachFeature: pop_TripPOI,
 			pointToLayer: function (feature, latlng) {
-				return L.circleMarker(latlng, {
+				return L.marker(latlng, {
 					radius: 6.0,
 					fillColor: '#e31a1c',
 					color: '#000000',
