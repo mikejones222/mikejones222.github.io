@@ -26,22 +26,22 @@
 		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
 		var feature_group = new L.featureGroup([]);
 		var raster_group = new L.LayerGroup([]);
-		var basemap_0 = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', { 
+		var basemap_0 = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
 			attribution: additional_attrib + '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-		});	
+		});
 		basemap_0.addTo(map);
-		var basemap_1 = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', { 
+		var basemap_1 = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
 			attribution: additional_attrib + 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-		});	
+		});
 		var layerOrder=new Array();
-		function pop_POI(feature, layer) {					
+		function pop_POI(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">Name</th><td>' + Autolinker.link(String(feature.properties['Name'])) + '</td></tr><tr><th scope="row">Descriptio</th><td>' + Autolinker.link(String(feature.properties['Descriptio'])) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties['Type'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
 
 		var exp_POIJSON = new L.geoJson(exp_POI,{
 			onEachFeature: pop_POI,
-			pointToLayer: function (feature, latlng) {  
+			pointToLayer: function (feature, latlng) {
 				return L.circleMarker(latlng, {
 					radius: 4.0,
 					fillColor: '#e3e232',
@@ -54,14 +54,14 @@
 		});
 		//add comment sign to hide this layer on the map in the initial view.
 		feature_group.addLayer(exp_POIJSON);
-		function pop_Rapids(feature, layer) {					
+		function pop_Rapids(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">Name</th><td>' + Autolinker.link(String(feature.properties['Name'])) + '</td></tr><tr><th scope="row">Descriptio</th><td>' + Autolinker.link(String(feature.properties['Descriptio'])) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties['Type'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
 
 		var exp_RapidsJSON = new L.geoJson(exp_Rapids,{
 			onEachFeature: pop_Rapids,
-			pointToLayer: function (feature, latlng) {  
+			pointToLayer: function (feature, latlng) {
 				return L.circleMarker(latlng, {
 					radius: 4.0,
 					fillColor: '#1f78b4',
@@ -74,14 +74,14 @@
 		});
 		//add comment sign to hide this layer on the map in the initial view.
 		feature_group.addLayer(exp_RapidsJSON);
-		function pop_Camps(feature, layer) {					
+		function pop_Camps(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">Name</th><td>' + Autolinker.link(String(feature.properties['Name'])) + '</td></tr><tr><th scope="row">Descriptio</th><td>' + Autolinker.link(String(feature.properties['Descriptio'])) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties['Type'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
 
 		var exp_CampsJSON = new L.geoJson(exp_Camps,{
 			onEachFeature: pop_Camps,
-			pointToLayer: function (feature, latlng) {  
+			pointToLayer: function (feature, latlng) {
 				return L.circleMarker(latlng, {
 					radius: 4.0,
 					fillColor: '#33a02c',
@@ -94,14 +94,14 @@
 		});
 		//add comment sign to hide this layer on the map in the initial view.
 		feature_group.addLayer(exp_CampsJSON);
-		function pop_MileMarkers(feature, layer) {					
+		function pop_MileMarkers(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">Name</th><td>' + Autolinker.link(String(feature.properties['Name'])) + '</td></tr><tr><th scope="row">Descriptio</th><td>' + Autolinker.link(String(feature.properties['Descriptio'])) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties['Type'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
 
 		var exp_MileMarkersJSON = new L.geoJson(exp_MileMarkers,{
 			onEachFeature: pop_MileMarkers,
-			pointToLayer: function (feature, latlng) {  
+			pointToLayer: function (feature, latlng) {
 				return L.circleMarker(latlng, {
 					radius: 4.0,
 					fillColor: '#6d389f',
@@ -114,15 +114,15 @@
 		});
 		//add comment sign to hide this layer on the map in the initial view.
 		feature_group.addLayer(exp_MileMarkersJSON);
-		function pop_TripPOI(feature, layer) {					
+		function pop_TripPOI(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">Name</th><td>' + Autolinker.link(String(feature.properties['Name'])) + '</td></tr><tr><th scope="row">Descriptio</th><td>' + Autolinker.link(String(feature.properties['Descriptio'])) + '</td></tr><tr><th scope="row">Type</th><td>' + Autolinker.link(String(feature.properties['Type'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
 
 		var exp_TripPOIJSON = new L.geoJson(exp_TripPOI,{
 			onEachFeature: pop_TripPOI,
-			pointToLayer: function (feature, latlng) {  
-				return L.circleMarker(latlng, {
+			pointToLayer: function (feature, latlng) {
+				return L.Marker(latlng, {
 					radius: 6.0,
 					fillColor: '#e31a1c',
 					color: '#000000',
