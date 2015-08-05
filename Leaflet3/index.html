@@ -40,7 +40,8 @@
 			{ "type": "Feature", "properties": { "name": "The Filmore", "website": "www.fillmoreauditorium.org", "address": "1510 Clarkson St", "city": "denver", "state": "co" }, "geometry": { "type": "Point", "coordinates": [ -104.977259, 39.7403904 ] } },
 			{ "type": "Feature", "properties": { "name": "The Roxy", "website": "theroxydenver.com", "address": "2549 Welton St", "city": "denver", "state": "co" }, "geometry": { "type": "Point", "coordinates": [ -104.979772, 39.753816 ] } },
 			{ "type": "Feature", "properties": { "name": "The Marquis", "website": "www.themarquistheatre.com", "address": "2009 Larimer St", "city": "denver", "state": "co" }, "geometry": { "type": "Point", "coordinates": [ -104.992521, 39.753375 ] } },
-			{ "type": "Feature", "properties": { "name": "Summit Music Hall", "website": "thesummitmusichall.com", "address": "1902 Blake St", "city": "denver", "state": "co" }, "geometry": { "type": "Point", "coordinates": [ -104.995071, 39.753338 ] } }
+			{ "type": "Feature", "properties": { "name": "Summit Music Hall", "website": "thesummitmusichall.com", "address": "1902 Blake St", "city": "denver", "state": "co" }, "geometry": { "type": "Point", "coordinates": [ -104.995071, 39.753338 ] } },
+      { "type": "Feature", "properties": { "name": "Red Rocks Ampitheater", "website": "redrocksonline.com", "address": "18300 West Alameda Parkway", "city": "Morrison", "state": "CO" }, "geometry": { "type": "Point", "coordinates": [ -105.2048224, 39.666415 ] } }
 ]
 }
 ]
@@ -58,7 +59,7 @@
 
             var img = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
             }).addTo(map);
-			var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			      var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
             var topo = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {}).addTo(map);
