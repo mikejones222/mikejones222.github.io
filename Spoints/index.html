@@ -65,16 +65,18 @@
             }).addTo(map);
             var topo = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {}).addTo(map);
 
-            L.control.layers({
+
+            var baseLayers = {
             	  'OSM': osm,
                 'Imagery' : img,
                 'Landscape': topo,
                 'Venues': :venue
+}
+            var overLays = {
+              'Venues': venue
+            };
 
-            }).addTo(map);
-
-
-            L.control.scale().addTo(map);
+            L.control.layers(baseLayers,overLays).addTo(map);
 
 
         </script>
