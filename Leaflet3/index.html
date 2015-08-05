@@ -19,6 +19,7 @@
 
         </style>
         <title>Denver Venues</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
 
     <body>
@@ -65,7 +66,7 @@
             var topo = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {}).addTo(map);
 
             L.control.layers({
-            	'OSM': osm,
+            	  'OSM': osm,
                 'Imagery' : img,
                 'Landscape': topo
 
