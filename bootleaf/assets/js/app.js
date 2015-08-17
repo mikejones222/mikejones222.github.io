@@ -370,7 +370,7 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 });
 
 map = L.map("map", {
-  zoom: 10,
+  zoom: 5,
   center: [40.702222, -105.979378],
   layers: [mapquestOSM, boroughs, markerClusters, highlight],
   zoomControl: false,
@@ -515,8 +515,9 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   sizeLayerControl();
-  /* Fit map to boroughs bounds */
-  map.fitBounds(boroughs.getBounds());
+
+  /* Fit map to Permits bounds */
+  map.fitBounds(theater.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
