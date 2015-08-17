@@ -517,7 +517,7 @@ $(document).one("ajaxStop", function () {
   sizeLayerControl();
 
   /* Fit map to Permits bounds */
-  map.fitBounds(boroughs.getBounds());
+  map.fitBounds(theaters.getBounds());
   featureList = new List("features", {valueNames: ["feature-name"]});
   featureList.sort("feature-name", {order:"asc"});
 
