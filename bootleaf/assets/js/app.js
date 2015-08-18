@@ -143,7 +143,7 @@ var boroughs = L.geoJson(null, {
       color: "black",
       fill: false,
       opacity: 1,
-      clickable: true
+      clickable: false
     };
   },
   onEachFeature: function (feature, layer) {
@@ -599,7 +599,7 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'>Boroughs</h4>"
     }
   }, {
-    name: "Theaters",
+    name: "COGCC Permits",
     displayKey: "name",
     source: theatersBH.ttAdapter(),
     templates: {
